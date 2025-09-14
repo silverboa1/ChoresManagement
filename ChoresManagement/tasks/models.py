@@ -233,3 +233,41 @@ class Task(models.Model):
         if tag in tags_list:
             tags_list.remove(tag)
             self.tags = ', '.join(tags_list)
+
+class TaskCategory(models.Model):
+
+    title = models.CharField(
+    max_length = 100,
+    unique  = True,
+    blank = False,
+    null = False,
+    text_hint = "зберігання назви категорії завдань"
+)
+    description = models.TextField(
+    blank = True,
+    text_hint = "детальний опис категорії"
+
+)
+
+    color = models.CharField(
+    max_length = 7,
+    default = "#007bff",
+    text_hint = "колір для візуального відображення категорії"
+)
+
+
+    active = models.BooleanField(
+    default = True,
+    text_hint = "визначає чи є категорія активною для використання"
+)
+
+    created_at = models.DateTimeField(
+    auto_now_add = True,
+    text_hint = "відстежування часу створення категорії"
+
+)   
+
+    class Meta:
+        verbose_name = 'Категорія завдань'
+        verbose_name_plural = 'Категорії завдань'
+        ordering = ["title"]
