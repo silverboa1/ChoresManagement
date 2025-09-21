@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Видалення сім'ї{% endblock %}
+{% block content %}
+<div class="card">
+  <h2>Видалити сім'ю</h2>
+  <p>Ви впевнені, що хочете видалити сім'ю <strong>{{ 
+object.name
+ }}</strong>?</p>
+  <form method="post">
+    {% csrf_token %}
+    <button type="submit" class="btn" style="background:crimson;">Видалити</button>
+    <a href="{% url 'accounts:family_list' %}" class="btn ghost">Скасувати</a>
+  </form>
+</div>
+{% endblock %} 

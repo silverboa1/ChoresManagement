@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block title %}Сім'ї{% endblock %}
+{% block content %}
+<div class="card">
+  <div class="h-stack" style="justify-content: space-between; align-items:center;">
+    <h2>Сім'ї</h2>
+    <a href="{% url 'accounts:family_create' %}" class="btn">+ Додати сім'ю</a>
+  </div>
+  <table class="table mt-2">
+    <thead>
+      <tr>
+        <th>Назва</th>
+        <th>Опис</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for family in families %}
+      <tr>
+        <td><a href="{% url 'accounts:family_detail' 
+family.pk
+ %}">{{ 
+family.name
+ }}</a></td>
+        <td>{{ family.description|default:"—" }}</td>
+        <td>
+          <a href="{% url 'accounts:family_update' 
+family.pk
+ %}" class="btn ghost">Редагувати</a>
+          <a href="{% url 'accounts:family_delete' 
+family.pk
+ %}" class="btn ghost" style="color:crimson;">Видалити</a>
+        </td>
+      </tr>
+      {% empty %}
+      <tr><td colspan="3" class="text-muted">Сімей поки немає</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}
