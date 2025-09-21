@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}Деталі сім'ї{% endblock %}
+{% block content %}
+<div class="card">
+  <h2>Сім'я: {{ 
+family.name
+ }}</h2>
+  <p><strong>Опис:</strong> {{ family.description|default:"—" }}</p>
+
+  <div class="mt-2 h-stack">
+    <a href="{% url 'accounts:family_update' 
+family.pk
+ %}" class="btn">Редагувати</a>
+    <a href="{% url 'accounts:family_list' %}" class="btn ghost">Назад</a>
+  </div>
+</div>
+{% endblock %} 
