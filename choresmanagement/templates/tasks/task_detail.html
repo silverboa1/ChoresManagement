@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}{{ 
+task.name
+ }}{% endblock %}
+
+{% block content %}
+<div class="container">
+  <h2>{{ 
+task.name
+ }}</h2>
+  <p><strong>Статус:</strong> {{ task.get_status_display }}</p>
+  <p><strong>Опис:</strong> {{ task.description|linebreaks }}</p>
+  <p><strong>Категорія:</strong> {{ task.category }}</p>
+  <p><strong>Складність:</strong> {{ task.difficulty }}</p>
+  <p><strong>Очікуваний час:</strong> {{ task.expected_time }}</p>
+  <p><strong>Періодичність:</strong> {{ task.get_periodicity_display }}</p>
+  <p><strong>Пріоритет:</strong> {{ task.get_priority_display }}</p>
+
+  <a href="{% url 'tasks:update' 
+task.pk
+ %}" class="btn btn-warning">Редагувати</a>
+  <a href="{% url 'tasks:delete' 
+task.pk
+ %}" class="btn btn-danger">Видалити</a>
+  <a href="{% url 'tasks:list' %}" class="btn btn-secondary">Назад</a>
+</div>
+{% endblock %} 
