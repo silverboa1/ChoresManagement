@@ -45,4 +45,4 @@ document.addEventListener("DOMContentLoaded", function () {
   document.querySelectorAll("[data-formset-container]").forEach(function (container) {
     attachRemoveHandlers(container);
   });
-}); 
+});

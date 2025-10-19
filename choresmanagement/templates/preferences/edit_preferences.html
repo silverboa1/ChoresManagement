@@ -25,7 +25,26 @@
           {% for form in category_pref_formset %}
             <div class="form-row" data-form>
               <button type="button" class="remove-form-btn" title="Видалити категорію">&#10006;</button>
-              {{ form.as_p }}
+
+              {% for field in form.visible_fields %}
+                {% if 
+field.name
+ != 'DELETE' %}
+                  <div class="form-field">
+                    {{ field.label_tag }} {{ field }}
+                    {% if field.help_text %}
+                      <small class="helptext">{{ field.help_text }}</small>
+                    {% endif %}
+                    {% for error in field.errors %}
+                      <div class="error">{{ error }}</div>
+                    {% endfor %}
+                  </div>
+                {% endif %}
+              {% endfor %}
+
+              {% if form.DELETE %}
+                <div style="display:none;">{{ form.DELETE }}</div>
+              {% endif %}
             </div>
           {% endfor %}
         </div>
@@ -37,7 +56,20 @@
         <div id="empty-form-template-usercategorypreference_set" hidden>
           <div class="form-row" data-form>
             <button type="button" class="remove-form-btn" title="Видалити категорію">&#10006;</button>
-            {{ category_pref_formset.empty_form.as_p }}
+
+            {% for field in category_pref_formset.empty_form.visible_fields %}
+              {% if 
+field.name
+ != 'DELETE' %}
+                <div class="form-field">
+                  {{ field.label_tag }} {{ field }}
+                </div>
+              {% endif %}
+            {% endfor %}
+
+            {% if category_pref_formset.empty_form.DELETE %}
+              <div style="display:none;">{{ category_pref_formset.empty_form.DELETE }}</div>
+            {% endif %}
           </div>
         </div>
       </section>
@@ -52,7 +84,26 @@
           {% for form in experience_formset %}
             <div class="form-row" data-form>
               <button type="button" class="remove-form-btn" title="Видалити досвід">&#10006;</button>
-              {{ form.as_p }}
+
+              {% for field in form.visible_fields %}
+                {% if 
+field.name
+ != 'DELETE' %}
+                  <div class="form-field">
+                    {{ field.label_tag }} {{ field }}
+                    {% if field.help_text %}
+                      <small class="helptext">{{ field.help_text }}</small>
+                    {% endif %}
+                    {% for error in field.errors %}
+                      <div class="error">{{ error }}</div>
+                    {% endfor %}
+                  </div>
+                {% endif %}
+              {% endfor %}
+
+              {% if form.DELETE %}
+                <div style="display:none;">{{ form.DELETE }}</div>
+              {% endif %}
             </div>
           {% endfor %}
         </div>
@@ -64,7 +115,20 @@
         <div id="empty-form-template-usercategoryexperience_set" hidden>
           <div class="form-row" data-form>
             <button type="button" class="remove-form-btn" title="Видалити досвід">&#10006;</button>
-            {{ experience_formset.empty_form.as_p }}
+
+            {% for field in experience_formset.empty_form.visible_fields %}
+              {% if 
+field.name
+ != 'DELETE' %}
+                <div class="form-field">
+                  {{ field.label_tag }} {{ field }}
+                </div>
+              {% endif %}
+            {% endfor %}
+
+            {% if experience_formset.empty_form.DELETE %}
+              <div style="display:none;">{{ experience_formset.empty_form.DELETE }}</div>
+            {% endif %}
           </div>
         </div>
       </section>
@@ -79,7 +143,26 @@
           {% for form in physical_lim_formset %}
             <div class="form-row" data-form>
               <button type="button" class="remove-form-btn" title="Видалити обмеження">&#10006;</button>
-              {{ form.as_p }}
+
+              {% for field in form.visible_fields %}
+                {% if 
+field.name
+ != 'DELETE' %}
+                  <div class="form-field">
+                    {{ field.label_tag }} {{ field }}
+                    {% if field.help_text %}
+                      <small class="helptext">{{ field.help_text }}</small>
+                    {% endif %}
+                    {% for error in field.errors %}
+                      <div class="error">{{ error }}</div>
+                    {% endfor %}
+                  </div>
+                {% endif %}
+              {% endfor %}
+
+              {% if form.DELETE %}
+                <div style="display:none;">{{ form.DELETE }}</div>
+              {% endif %}
             </div>
           {% endfor %}
         </div>
@@ -91,7 +174,20 @@
         <div id="empty-form-template-userphysicallimitation_set" hidden>
           <div class="form-row" data-form>
             <button type="button" class="remove-form-btn" title="Видалити обмеження">&#10006;</button>
-            {{ physical_lim_formset.empty_form.as_p }}
+
+            {% for field in physical_lim_formset.empty_form.visible_fields %}
+              {% if 
+field.name
+ != 'DELETE' %}
+                <div class="form-field">
+                  {{ field.label_tag }} {{ field }}
+                </div>
+              {% endif %}
+            {% endfor %}
+
+            {% if physical_lim_formset.empty_form.DELETE %}
+              <div style="display:none;">{{ physical_lim_formset.empty_form.DELETE }}</div>
+            {% endif %}
           </div>
         </div>
       </section>
