@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}Деталі обмеження — {{ 
+limitation.name
+ }}{% endblock %}
+
+{% block content %}
+<h1>{{ 
+limitation.name
+ }}</h1>
+
+<p><strong>Опис:</strong> {{ limitation.description|default:"—" }}</p>
+
+<div class="actions">
+    <a href="{% url 'preferences:limitation_update' 
+limitation.pk
+ %}" class="btn btn-warning">Редагувати</a>
+    <a href="{% url 'preferences:limitation_delete' 
+limitation.pk
+ %}" class="btn btn-danger">Видалити</a>
+    <a href="{% url 'preferences:limitation_list' %}" class="btn btn-secondary">Назад до списку</a>
+</div>
+{% endblock %} 

@@ -1,0 +1,205 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container">
+  <div class="card">
+    <h2>Налаштування користувача</h2>
+
+    <form method="post">
+      {% csrf_token %}
+
+      <!-- 🟢 Основні налаштування -->
+      <section class="mt-2">
+        <h3>Основні налаштування</h3>
+        {{ pref_form.as_p }}
+      </section>
+
+      <!-- 🟡 Категорії -->
+      <section class="mt-2">
+        <h3>Категорії</h3>
+
+        <div data-formset-container="usercategorypreference_set">
+          {{ category_pref_formset.management_form }}
+
+          {% for form in category_pref_formset %}
+            <div class="form-row" data-form>
+              <button type="button" class="remove-form-btn" title="Видалити категорію">&#10006;</button>
+
+              {% for field in form.visible_fields %}
+                {% if 
+field.name
+ != 'DELETE' %}
+                  <div class="form-field">
+                    {{ field.label_tag }} {{ field }}
+                    {% if field.help_text %}
+                      <small class="helptext">{{ field.help_text }}</small>
+                    {% endif %}
+                    {% for error in field.errors %}
+                      <div class="error">{{ error }}</div>
+                    {% endfor %}
+                  </div>
+                {% endif %}
+              {% endfor %}
+
+              {% if form.DELETE %}
+                <div style="display:none;">{{ form.DELETE }}</div>
+              {% endif %}
+            </div>
+          {% endfor %}
+        </div>
+
+        <button type="button" class="btn ghost mt-1" data-formset-add-btn="usercategorypreference_set">
+          + Додати категорію
+        </button>
+
+        <div id="empty-form-template-usercategorypreference_set" hidden>
+          <div class="form-row" data-form>
+            <button type="button" class="remove-form-btn" title="Видалити категорію">&#10006;</button>
+
+            {% for field in category_pref_formset.empty_form.visible_fields %}
+              {% if 
+field.name
+ != 'DELETE' %}
+                <div class="form-field">
+                  {{ field.label_tag }} {{ field }}
+                </div>
+              {% endif %}
+            {% endfor %}
+
+            {% if category_pref_formset.empty_form.DELETE %}
+              <div style="display:none;">{{ category_pref_formset.empty_form.DELETE }}</div>
+            {% endif %}
+          </div>
+        </div>
+      </section>
+
+      <!-- 🟣 Рівень досвіду -->
+      <section class="mt-2">
+        <h3>Рівень досвіду</h3>
+
+        <div data-formset-container="usercategoryexperience_set">
+          {{ experience_formset.management_form }}
+
+          {% for form in experience_formset %}
+            <div class="form-row" data-form>
+              <button type="button" class="remove-form-btn" title="Видалити досвід">&#10006;</button>
+
+              {% for field in form.visible_fields %}
+                {% if 
+field.name
+ != 'DELETE' %}
+                  <div class="form-field">
+                    {{ field.label_tag }} {{ field }}
+                    {% if field.help_text %}
+                      <small class="helptext">{{ field.help_text }}</small>
+                    {% endif %}
+                    {% for error in field.errors %}
+                      <div class="error">{{ error }}</div>
+                    {% endfor %}
+                  </div>
+                {% endif %}
+              {% endfor %}
+
+              {% if form.DELETE %}
+                <div style="display:none;">{{ form.DELETE }}</div>
+              {% endif %}
+            </div>
+          {% endfor %}
+        </div>
+
+        <button type="button" class="btn ghost mt-1" data-formset-add-btn="usercategoryexperience_set">
+          + Додати рівень досвіду
+        </button>
+
+        <div id="empty-form-template-usercategoryexperience_set" hidden>
+          <div class="form-row" data-form>
+            <button type="button" class="remove-form-btn" title="Видалити досвід">&#10006;</button>
+
+            {% for field in experience_formset.empty_form.visible_fields %}
+              {% if 
+field.name
+ != 'DELETE' %}
+                <div class="form-field">
+                  {{ field.label_tag }} {{ field }}
+                </div>
+              {% endif %}
+            {% endfor %}
+
+            {% if experience_formset.empty_form.DELETE %}
+              <div style="display:none;">{{ experience_formset.empty_form.DELETE }}</div>
+            {% endif %}
+          </div>
+        </div>
+      </section>
+
+      <!-- 🔵 Фізичні обмеження -->
+      <section class="mt-2">
+        <h3>Фізичні обмеження</h3>
+
+        <div data-formset-container="userphysicallimitation_set">
+          {{ physical_lim_formset.management_form }}
+
+          {% for form in physical_lim_formset %}
+            <div class="form-row" data-form>
+              <button type="button" class="remove-form-btn" title="Видалити обмеження">&#10006;</button>
+
+              {% for field in form.visible_fields %}
+                {% if 
+field.name
+ != 'DELETE' %}
+                  <div class="form-field">
+                    {{ field.label_tag }} {{ field }}
+                    {% if field.help_text %}
+                      <small class="helptext">{{ field.help_text }}</small>
+                    {% endif %}
+                    {% for error in field.errors %}
+                      <div class="error">{{ error }}</div>
+                    {% endfor %}
+                  </div>
+                {% endif %}
+              {% endfor %}
+
+              {% if form.DELETE %}
+                <div style="display:none;">{{ form.DELETE }}</div>
+              {% endif %}
+            </div>
+          {% endfor %}
+        </div>
+
+        <button type="button" class="btn ghost mt-1" data-formset-add-btn="userphysicallimitation_set">
+          + Додати обмеження
+        </button>
+
+        <div id="empty-form-template-userphysicallimitation_set" hidden>
+          <div class="form-row" data-form>
+            <button type="button" class="remove-form-btn" title="Видалити обмеження">&#10006;</button>
+
+            {% for field in physical_lim_formset.empty_form.visible_fields %}
+              {% if 
+field.name
+ != 'DELETE' %}
+                <div class="form-field">
+                  {{ field.label_tag }} {{ field }}
+                </div>
+              {% endif %}
+            {% endfor %}
+
+            {% if physical_lim_formset.empty_form.DELETE %}
+              <div style="display:none;">{{ physical_lim_formset.empty_form.DELETE }}</div>
+            {% endif %}
+          </div>
+        </div>
+      </section>
+
+      <div class="mt-2">
+        <button type="submit" class="btn">Зберегти</button>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}
+
+{% block extra_scripts %}
+  <script src="{% static 'preferences/js/formset_edit.js' %}"></script>
+{% endblock %}
