@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}{% if 
+form.instance.pk
+ %}Редагувати завдання{% else %}Нове завдання{% endif %}{% endblock %}
+
+{% block content %}
+<div class="container">
+  <h2>{% if 
+form.instance.pk
+ %}Редагувати завдання{% else %}Нове завдання{% endif %}</h2>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">
+      {% if 
+form.instance.pk
+ %}Оновити{% else %}Створити{% endif %}
+    </button>
+    <a href="{% url 'tasks:list' %}" class="btn btn-secondary">Скасувати</a>
+  </form>
+</div>
+{% endblock %} 
