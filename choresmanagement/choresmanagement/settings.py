@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -23,12 +24,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-%apw-2j)en69vl+-1ceqrx_ks(#qe8ns*k!1&)(ppp_05c*7g0'
+SECRET_KEY = os.environ.get('SECRET_KEY','django-insecure-%apw-2j)en69vl+-1ceqrx_ks(#qe8ns*k!1&)(ppp_05c*7g0') 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get('DEBUG', True) 
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [os.environ.get('ALLOWED_HOSTS', '127.0.0.1')]
 
 
 # Application definition
@@ -41,9 +42,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'accounts',
-    "preferences",
-    "tasks"
-
+    'tasks',
+    'preferences'
 ]
 
 MIDDLEWARE = [
@@ -54,6 +54,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "django.middleware.security.SecurityMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
 ]
 
 ROOT_URLCONF = 'choresmanagement.urls'
@@ -131,6 +133,8 @@ STATIC_URL = '/static/'
 # Папка для збору статичних файлів у продакшені
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+
 # Папки, де Django шукає статичні файли під час розробки
 STATICFILES_DIRS = [
     BASE_DIR / 'static',
@@ -147,3 +151,9 @@ MEDIA_ROOT = BASE_DIR / 'media'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = "accounts.User"
+
+# Куди перенаправляти після входу
+LOGIN_REDIRECT_URL = "/"
+
+# Куди перенаправляти після виходу
+LOGOUT_REDIRECT_URL = "/accounts/login/" 
